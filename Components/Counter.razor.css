@@ -1,0 +1,8 @@
+﻿.counter_btns {
+    @media (max-width: 576px) {
+        width: 300px;
+    }
+    @media (min-width: 577px) {
+        width: 200px;
+    }
+}

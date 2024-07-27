@@ -75,3 +75,11 @@
 code {
     color: #c02d76;
 }
+
+body {
+    background-color: #F8F9FA;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
