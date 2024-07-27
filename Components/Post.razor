@@ -1,12 +1,18 @@
-﻿<Div Class="p-2 row bg-white my-3 justify-content-between rounded">
+﻿@using interactive_comments_section.Models
+<Div Class="p-2 row bg-white justify-content-between mx-auto rounded" Style="max-width: 100%;">
     <Div Class="col-md-1 col-xs-4 order-md-1 order-2" Style="width: fit-content">
-        <Counter />
+        <Counter Score="Comment.Score" />
     </Div>
     <Div Class="col-md-9 col-xs-12 order-md-2 order-1">
-        <PostContent />
+        <PostContent Comment="Comment" />
     </Div>
     <Div Class="col-md-2 col-xs-4 order-md-3 text-primary order-3" Style="width: fit-content; cursor: pointer;">
         <Icon Name="IconName.Reply" />
         Reply
     </Div>
 </Div>
+
+@code {
+    [Parameter]
+    public Comment Comment { get; set; }    
+}

@@ -1,5 +1,10 @@
-﻿<h3>Post Content</h3>
+﻿@using interactive_comments_section.Models
+
+<h3>@Comment.User.Username</h3>
+<p>@Comment.Content</p>
+<p><small>@Comment.CreatedAt</small></p>
 
 @code {
-
+    [Parameter]
+    public Comment Comment { get; set; }
 }

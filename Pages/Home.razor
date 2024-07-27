@@ -1,11 +1,56 @@
 ﻿@page "/"
+@using interactive_comments_section.Models
+@inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
 
-<div class="container">
-    <div class="d-flex flex-column mt-3">
-        <Post />
-        <Post />
-        <Post />
-    </div>   
-</div>
+<Div class="container" style="max-width: 720px;">
+    <Div class="d-flex flex-column mt-3">
+        @if (comments != null)
+        {
+            @foreach (var comment in comments)
+            {
+                <Div Class="mt-3">
+                    <Post Comment="comment" />
+                    @if (comment.Replies != null)
+                    {
+                        <Div Class="m-0 p-0 border-start-2 border-light">
+                            <Div Class="ms-2 ms-md-3">
+                                @foreach (var reply in comment.Replies)
+                                {
+                                    <Div Class="mt-3">
+                                        <Post Comment="reply" />
+                                    </Div>
+                                }
+                            </Div>
+                        </Div>
+                    }
+                </Div>
+            }
+        }
+    </Div>
+    <Div Class="mt-3 bg-white p-3 rounded">
+        <Div Class="row">
+            <Div Class="col-1">
+                Avatar
+            </Div>
+            <Div Class="col">
+                <InputTextArea class="form-control" Placeholder="Your comment" @bind-Value="NewComment" />
+            </Div>
+            <Div Class="col-2" Style="width: fit-content">
+                <Button Class="btn btn-primary">Send</Button>
+            </Div>
+        </Div>
+    </Div>
+</Div>
+
+@code {
+    private List<Comment> comments;
+    public string NewComment { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetFromJsonAsync<Root>("data.json");
+        comments = response.Comments;
+    }
+}

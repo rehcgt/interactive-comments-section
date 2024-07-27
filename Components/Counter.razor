@@ -1,16 +1,22 @@
-﻿<Div Class="d-flex flex-md-column justify-content-start bg-light align-items-center rounded">
-    <Button Style="width: fit-content" @onclick="@IncrementCount">+</Button>
-    <Div Class="text-center">@count</Div>
-    <Button Style="width: fit-content" @onclick="@DecrementCount">-</Button>
+﻿<Div Class="d-flex flex-md-column justify-content-start bg-light align-items-center fw-bold rounded">
+    <Button Style="width: fit-content" @onclick="@IncrementCount">
+        <Span Class="text-black-50 fw-bold">+</Span>
+    </Button>
+    <Div Class="text-primary text-center">@Score</Div>
+    <Button Style="width: fit-content" Class="text-black-50" @onclick="@DecrementCount">
+        <Span Class="text-black-50 fw-bold">-</Span>
+    </Button>
 </Div>
 @code {
-    private int count = 0;
+    [Parameter]
+    public int Score { get; set; } = 0;
+
     public void IncrementCount()
     {
-        count++;
+        Score++;
     }
     public void DecrementCount()
     {
-        if (count > 0) count--;
+        if (Score > 0) Score--;
     }
 }
